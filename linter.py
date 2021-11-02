@@ -2,9 +2,9 @@ from SublimeLinter.lint import Linter  # or NodeLinter, PythonLinter, ComposerLi
 
 
 class __class__(Linter):
-    cmd = '__cmd__'
+    cmd = 'io.elementary.vala-lint'
     regex = r''
     multiline = False
     defaults = {
-        'selector': 'source.python'
+        'selector': 'source.vala'
     }
