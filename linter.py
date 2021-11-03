@@ -8,3 +8,4 @@ class ValaLint(Linter):
     defaults = {
         'selector': 'source.vala'
     }
+    name = 'vala-lint'
