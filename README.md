@@ -3,7 +3,7 @@ SublimeLinter-contrib-vala-lint
 
 [![Build Status](https://travis-ci.org/SublimeLinter/SublimeLinter-contrib-vala-lint.svg?branch=master)](https://travis-ci.org/SublimeLinter/SublimeLinter-contrib-vala-lint)
 
-This linter plugin for [SublimeLinter](https://github.com/SublimeLinter/SublimeLinter) provides an interface to [vala-lint](__linter_homepage__). It will be used with files that have the “vala” syntax.
+This linter plugin for [SublimeLinter](https://github.com/SublimeLinter/SublimeLinter) provides an interface to [vala-lint](https://github.com/vala-lang/vala-lint). It will be used with files that have the “vala” syntax.
 
 You can install the [Vala-TMBundle package](https://packagecontrol.io/packages/Vala-TMBundle) to automatically assign the "vala" syntax to Vala files.
 
