@@ -14,7 +14,7 @@ Please use [Package Control](https://packagecontrol.io) to install the linter pl
 
 Before installing this plugin, you must ensure that `vala-lint` is installed on your system. There are installation instsructions here: https://github.com/vala-lang/vala-lint
 
-This plugin requires a `vala-lint` build that supports `--stdin` and `--json-output`. If your `vala-lint` predates those options, upgrade it before using this plugin.
+**Breaking change in 2.0.0:** this plugin now requires a `vala-lint` build that supports `--stdin` and `--json-output`. If your `vala-lint` predates those options, either upgrade it, or install version 1.1.0 of this package instead via Package Control. If an unsupported `vala-lint` build is detected, the plugin will show a message with these same instructions.
 
 In order for `vala-lint` to be executed by SublimeLinter, you must ensure that its path is available to SublimeLinter. The docs cover [troubleshooting PATH configuration](http://sublimelinter.readthedocs.io/en/latest/troubleshooting.html#finding-a-linter-executable).
 

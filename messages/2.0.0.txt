@@ -1,0 +1,16 @@
+SublimeLinter-contrib-vala-lint 2.0.0
+--------------------------------------
+This is a BREAKING release.
+
+The plugin now lints via `vala-lint --stdin --json-output` instead of
+writing a temp file and parsing plain-text output. This lets it report
+mistakes as you type (not just on save) and adds quick fixes for
+auto-fixable mistakes, plus a "Vala-Lint: Fix All Auto-Fixable Problems"
+command.
+
+This requires a vala-lint build that supports `--stdin` and
+`--json-output`. If you can't upgrade vala-lint right now, install
+version 1.1.0 of this package instead via Package Control.
+
+For more information, please see:
+https://github.com/colinkiama/SublimeLinter-contrib-vala-lint

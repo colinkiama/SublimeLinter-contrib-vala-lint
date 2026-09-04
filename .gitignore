@@ -43,3 +43,8 @@ node_modules/*
 # Local test files #
 #####################
 sample.vala
+
+# Python #
+##########
+__pycache__/
+*.pyc

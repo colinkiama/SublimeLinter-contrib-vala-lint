@@ -1,8 +1,34 @@
 import json
+import subprocess
 
 import sublime
 from SublimeLinter.lint import Linter, LintMatch
 from SublimeLinter.lint.quick_fix import TextRange, provide_fix_for
+
+MIN_VERSION_MESSAGE = (
+    "vala-lint at '{}' does not appear to support --stdin.\n\n"
+    "SublimeLinter-contrib-vala-lint 2.0.0 requires a vala-lint build with "
+    "--stdin and --json-output support. Please install the latest vala-lint "
+    "release, or, if you can't upgrade it right now, install version 1.1.0 "
+    "of this package instead via Package Control."
+)
+
+_stdin_support_cache = {}
+_warned_binaries = set()
+
+
+def _binary_supports_stdin(executable):
+    try:
+        result = subprocess.run(
+            [executable, '--help'],
+            capture_output=True, text=True, timeout=5
+        )
+    except (OSError, subprocess.SubprocessError):
+        # Let the normal run/error handling deal with a broken executable.
+        return True
+
+    output = (result.stdout or '') + (result.stderr or '')
+    return '--stdin' in output
 
 
 def byte_col_to_char_index(line_text, one_based_byte_col):
@@ -25,6 +51,24 @@ class ValaLint(Linter):
         'selector': 'source.vala'
     }
     name = 'vala-lint'
+
+    def get_cmd(self):
+        cmd = super().get_cmd()
+        if cmd and not self.ensure_stdin_support(cmd[0]):
+            return None
+        return cmd
+
+    def ensure_stdin_support(self, executable):
+        try:
+            supported = _stdin_support_cache[executable]
+        except KeyError:
+            supported = _stdin_support_cache[executable] = _binary_supports_stdin(executable)
+
+        if not supported and executable not in _warned_binaries:
+            _warned_binaries.add(executable)
+            sublime.error_message(MIN_VERSION_MESSAGE.format(executable))
+
+        return supported
 
     def find_errors(self, output):
         try:
