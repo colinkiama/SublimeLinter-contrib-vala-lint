@@ -1,0 +1,6 @@
+[
+    {
+        "caption": "Vala-Lint: Fix All Auto-Fixable Problems",
+        "command": "vala_lint_fix_all"
+    }
+]
